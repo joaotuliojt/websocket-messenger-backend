@@ -8,7 +8,9 @@ export class MessageRepositoryPostgres implements MessageRepository {
     return newMessage as Message;
   }
   async getAllMessages() {
-    const messages = await prisma.message.findMany();
+    const messages = await prisma.message.findMany({
+      orderBy: { createdAt: "desc" },
+    });
     return messages as Message[];
   }
   async getMessageById(id: string) {
