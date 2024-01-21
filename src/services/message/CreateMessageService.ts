@@ -5,10 +5,6 @@ import { CreateMessageService } from "../../domain/interfaces/services/CreateMes
 export class CreateMessageServiceImpl implements CreateMessageService {
   constructor(private messageRepository: MessageRepository) {}
   async execute(message: Message) {
-    const newMessage: Message = {
-      ...message,
-      createdAt: new Date(),
-    };
-    return this.messageRepository.createMessage(newMessage);
+    return this.messageRepository.createMessage(message);
   }
 }
